@@ -21,7 +21,7 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from core.views import RegisterView
-from tasks.views import TaskViewSet
+from tasks.views import TaskViewSet, ParseParticipantsView
 
 router = DefaultRouter()
 router.register(r'tasks', TaskViewSet, basename='tasks')
@@ -36,5 +36,6 @@ urlpatterns = [
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     # API
+    path('tasks/parse/', ParseParticipantsView.as_view(), name='parse-participants'),
     path('', include(router.urls)),
 ]

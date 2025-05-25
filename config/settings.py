@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django_filters',
     'drf_spectacular',
     # Local apps
-    'tasks'
+    'core',
+    'tasks',
 ]
 
 MIDDLEWARE = [
