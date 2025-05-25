@@ -20,6 +20,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from core.views import RegisterView
 from tasks.views import TaskViewSet
 
 router = DefaultRouter()
@@ -27,7 +28,8 @@ router.register(r'tasks', TaskViewSet, basename='tasks')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # Token
+    # Auth
+    path('auth/register/', RegisterView.as_view(), name='auth-register'),
     path('auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # Swagger UI
