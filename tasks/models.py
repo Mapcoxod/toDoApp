@@ -18,3 +18,32 @@ class Task(BaseModel):
 
     def __str__(self):
         return self.title
+
+
+class Participant(BaseModel):
+    company_name = models.CharField(_("наименование компании"), max_length=255)
+    bin = models.CharField(_("БИН"), max_length=255)
+    status = models.CharField(
+        _("статус"),
+        null=True,
+        blank=True,
+        max_length=50,
+    )
+    issue_date = models.DateField(
+        verbose_name="дата выдачи",
+        null=True,
+        blank=True,
+    )
+    expiration_date = models.DateField(
+        verbose_name="срок действия",
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name = _("участник")
+        verbose_name_plural = _("участники")
+
+    def __str__(self):
+        return self.company_name
