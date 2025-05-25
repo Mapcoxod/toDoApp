@@ -8,10 +8,10 @@ from tasks.models import Participant
 
 
 class Command(BaseCommand):
-    help = 'Собирает 10 первых участников AstanaHub Techpark'
+    help = "Собирает 10 первых участников AstanaHub Techpark"
 
     def handle(self, *args, **options):
-        url = 'https://astanahub.com/ru/service/techpark/'
+        url = "https://astanahub.com/ru/service/techpark/"
         resp = requests.get(url)
         resp.raise_for_status()
         soup = BeautifulSoup(resp.text, "html.parser")
@@ -38,14 +38,14 @@ class Command(BaseCommand):
             obj, created = Participant.objects.update_or_create(
                 bin=bin_number,
                 defaults={
-                    'company_name': company_name,
-                    'issue_date': issue_date,
-                    'expiration_date': expiration_date,
-                    'status': status,
-                }
+                    "company_name": company_name,
+                    "issue_date": issue_date,
+                    "expiration_date": expiration_date,
+                    "status": status,
+                },
             )
 
             action = "Создано" if created else "Обновлено"
             self.stdout.write(f"{action}: {company_name} (BIN={bin_number})")
 
-        self.stdout.write(self.style.SUCCESS('Парсинг завершён'))
+        self.stdout.write(self.style.SUCCESS("Парсинг завершён"))

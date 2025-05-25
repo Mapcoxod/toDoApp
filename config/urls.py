@@ -24,18 +24,20 @@ from core.views import RegisterView
 from tasks.views import TaskViewSet, ParseParticipantsView
 
 router = DefaultRouter()
-router.register(r'tasks', TaskViewSet, basename='tasks')
+router.register(r"tasks", TaskViewSet, basename="tasks")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     # Auth
-    path('auth/register/', RegisterView.as_view(), name='auth-register'),
-    path('auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path("auth/register/", RegisterView.as_view(), name="auth-register"),
+    path("auth/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("auth/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     # Swagger UI
-    path('schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"
+    ),
     # API
-    path('tasks/parse/', ParseParticipantsView.as_view(), name='parse-participants'),
-    path('', include(router.urls)),
+    path("tasks/parse/", ParseParticipantsView.as_view(), name="parse-participants"),
+    path("", include(router.urls)),
 ]

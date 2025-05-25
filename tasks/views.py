@@ -16,7 +16,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_class = TaskFilter
     permission_classes = [IsAuthenticated]
-    search_fields = ['title']
+    search_fields = ["title"]
 
     def get_queryset(self):
         qs = Task.objects.filter(owner=self.request.user)
@@ -31,7 +31,7 @@ class ParseParticipantsView(GenericAPIView):
     serializer_class = ParticipantSerializer
 
     def get(self, request, *args, **kwargs):
-        call_command('astanahub_parser')
+        call_command("astanahub_parser")
 
         qs = Participant.objects.all()[:10]
         serializer = self.get_serializer(qs, many=True)
