@@ -1,0 +1,20 @@
+# pyproject.toml
+[tool.black]
+line-length = 88
+target-version = ['py311']
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | todoenv
+  | build
+  | dist
+  | migrations        # все папки migrations
+  | __pycache__       # кэши Python
+  | env               # если есть папка env
+  | venv              # если есть папка venv
+  | node_modules
+  | \.mypy_cache
+  | \.pytest_cache
+)/
+'''
